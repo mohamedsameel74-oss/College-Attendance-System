@@ -6,8 +6,8 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 const app = express();
-app.use(cors({ origin: "http://localhost:5173" }));
-app.use(express.json());
+const allowedOrigins = ["http://localhost:5173", process.env.CLIENT_URL].filter(Boolean);
+app.use(cors({ origin: allowedOrigins }));app.use(express.json());
 
 // ---------- DATABASE CONNECTION ----------
 mongoose
